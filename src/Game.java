@@ -4,39 +4,40 @@ import java.util.Scanner;
  * Created by alhanger on 10/8/15.
  */
 public class Game {
-    public static void run() throws Exception {
+    static Player player;
+    public static void main(String[] args) throws Exception {
+
         System.out.println("Welcome to Winterfell!");
-        System.out.println("What is your name, traveler?");
+        player = new Player();
 
-        Scanner scanner = new Scanner(System.in);
-        String name = scanner.nextLine();
-        System.out.println("Good luck, " + name);
-
-        System.out.println("[1] Pick up a sword");
-        System.out.println("[2] Pick up a club");
-        System.out.println("[3] Pick up some bitches");
-        String weapon = scanner.nextLine();
-        int weaponNum = Integer.valueOf(weapon);
-        if (weaponNum == 1) {
-            System.out.println("That's a fine sword!");
-        } else if (weaponNum == 2) {
-            System.out.printf("That's an awfully heavy club.");
-        } else if (weaponNum == 3) {
-            System.out.println("I see your priorities are in proper order.");
-        } else {
-            throw new Exception("Invalid weapon.");
+        while (true) {
+            player.chooseName();
+            player.chooseWeapon();
+            player.chooseArea();
+            player.findItem("Shield");
         }
+    }
 
-        System.out.println("[1] Enter the forest");
-        System.out.println("[2] Enter the tunnel");
-        String area = scanner.nextLine();
-        int areaNum = Integer.valueOf(area);
-        if (areaNum == 1) {
-            System.out.println("Entering the forest...");
-        } else if (areaNum == 2) {
-            System.out.println("Entering the tunnel... Watch your head!");
+    static String nextLine() {
+        Scanner scanner = new Scanner(System.in);
+        String s = scanner.nextLine();
+        if (s.startsWith("/")) {
+            if (s.equals("/help")) {
+                System.out.println("These are the available commands:");
+                System.out.println("/help => Lists available commands.");
+            } else if (s.equals("/exit")) {
+                System.exit(0);
+            } else if (s.equals("/inv")) {
+                if (player.items.size() == 0) {
+                    System.out.println("Your bag is empty.");
+                }
+                for (Object item : player.items) {
+                    System.out.println(item);
+                }
+            }
+            return nextLine();
         } else {
-            throw new Exception("You can't go there!");
+            return s;
         }
     }
 }
