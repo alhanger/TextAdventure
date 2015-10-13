@@ -3,11 +3,15 @@ import java.util.ArrayList;
 /**
  * Created by alhanger on 10/9/15.
  */
-public class Player {
-    String name;
+public class Player extends Character {
     String weapon;
     String area;
     ArrayList items = new ArrayList();
+
+    public Player() {
+        health = 100;
+        damage = 20;
+    }
 
     void chooseName() { //Player chooses Name
         System.out.println("What is your name, traveler?");
