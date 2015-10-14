@@ -5,11 +5,14 @@ public class Character {
     String name;
     int health;
     int damage;
+    Weapon weapon;
 
     void battle(Character opponent) {
+        System.out.println(String.format("%s commences battles with %s!", name, opponent.name));
         while (health > 0 && opponent.health > 0) {
-            health -= opponent.damage;
-            opponent.health -= damage;
+            health -= opponent.damage + opponent.weapon.damage;
+            opponent.health -= damage + weapon.damage;
+            System.out.println(String.format("%s's health: %d, %s's health: %d", name, health, opponent.name, opponent.health));
         }
 
         String deadMessage = "%s has been killed!";

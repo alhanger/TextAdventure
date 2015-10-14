@@ -7,7 +7,7 @@ public class Game {
     static Player player;
     public static void main(String[] args) throws Exception {
 
-        System.out.println("Welcome to Winterfell!");
+        System.out.println("Welcome to Westeros!");
         player = new Player();
 
         player.chooseName();
@@ -15,7 +15,10 @@ public class Game {
         player.chooseArea();
         player.findItem("Shield");
 
-        Enemy ogre = new Enemy("Ogre", 50, 5);
+        Weapon ogreWeapon = new Weapon();
+        ogreWeapon.name = "Club";
+        ogreWeapon.damage = 5;
+        Enemy ogre = new Enemy("Ogre", 50, 5, ogreWeapon);
         player.battle(ogre);
     }
 
