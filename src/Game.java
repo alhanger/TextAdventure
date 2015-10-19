@@ -44,18 +44,21 @@ public class Game {
             if (s.equals("/help")) {
                 System.out.println("These are the available commands:");
                 System.out.println("/help => Lists available commands.");
-            } else if (s.equals("/exit")) {
+            }
+            else if (s.equals("/exit")) {
                 System.exit(0);
-            } else if (s.equals("/inv")) {
+            }
+            else if (s.equals("/inv")) {
                 if (player.items.size() == 0) {
                     System.out.println("Your bag is empty.");
                 }
-                for (Object item : player.items) {
+                for (String item : player.items) {
                     System.out.println(item);
                 }
             }
             return nextLine();
-        } else {
+        }
+        else {
             return s;
         }
     }
